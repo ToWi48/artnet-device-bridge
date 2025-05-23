@@ -1,0 +1,39 @@
+[project]
+name = "artnet_device_bridge"
+dynamic = ["version"]
+description = "This repo allows the remapping and modification of dmx channels from one dmx universe to another via artnet. The aim is to be able to use standard devices with a full range of functions in the DMX software and to be able to manually adapt this output to different devices with different ranges of functions afterwards"
+authors = [
+    {name = "Tom Wiessner", email = "tom.wiessner1@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.2.6",
+    "pre-commit>=4.2.0",
+    "pydantic>=2.11.5",
+    "stupidartnet>=1.6.0",
+]
+
+[project.scripts]
+artnet-device-bridge = "artnet_device_bridge.main:main"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+# requires = ["pdm-backend"]
+# build-backend = "pdm.backend"
+
+[tool.uv]
+allow-insecure-host = ["https://pypi.org"]
+
+[tool.pdm.build]
+includes = "src/artnet_device_bridge"
+
+[tool.pdm.version]
+source = "scm"
+fallback_version = "0.0.0"
+
+[tool.ruff]
+line-length = 100
+fix = true
+target-version = "py310"
